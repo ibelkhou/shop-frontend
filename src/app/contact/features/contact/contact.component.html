@@ -1,0 +1,38 @@
+<h1 class="text-center">Contactez-nous</h1>
+
+<form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+  <div>
+    <label for="email">Email :</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="contact.email"
+      #email="ngModel"
+      required
+      email
+    />
+    <div *ngIf="email.invalid && email.touched" class="error">
+      Un email valide est requis.
+    </div>
+  </div>
+ 
+  <div>
+    <label for="message">Message :</label>
+    <textarea
+      id="message"
+      name="message"
+      [(ngModel)]="contact.message"
+      #message="ngModel"
+      required
+      maxlength="300"
+    ></textarea>
+    <div *ngIf="message.invalid && message.touched" class="error">
+      Le message est requis et doit contenir moins de 300 caractères.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
+
+  <p *ngIf="submitted" class="success">Demande de contact envoyée avec succès.</p>
+</form>
