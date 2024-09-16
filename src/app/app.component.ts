@@ -18,15 +18,12 @@ export class AppComponent {
   title = "ALTEN SHOP";
   cartCount = 0; 
 
-  constructor(private cartService: CartService) {
-    this.updateCartCount();
-  }
+  constructor(private cartService: CartService) {}
 
-  updateCartCount() {
-    this.cartCount = this.cartService.getCartCount();
-  }
 
   ngOnInit() {
-    this.updateCartCount();
+    this.cartService.cartCount$.subscribe((count: number) => {
+      this.cartCount = count;
+    });
   }
 }
